@@ -31,11 +31,11 @@ export default function TopContainer({
           className="w-full h-full object-cover"
         />
       </div>
-      <div className="relative z-10">
+      <div className="relative z-10 bg-slate-50">
         <div className="absolute left-0 right-0 mx-auto w-[400px] h-[100px] bg-[#000] top-[-100px] flex items-center justify-center rounded-t-xl">
           <h1 className="text-white text-2xl font-bold">Hiroto Blog.</h1>
         </div>
-        <div className="h-[1200px]">{children}</div>
+        <div className="py-20">{children}</div>
       </div>
     </div>
   );
