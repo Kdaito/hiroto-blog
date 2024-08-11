@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Footer from "./footer";
 
 export default function TopContainer({
   children,
@@ -37,6 +38,7 @@ export default function TopContainer({
         </div>
         <div className="py-20">{children}</div>
       </div>
+      <Footer />
     </div>
   );
 }

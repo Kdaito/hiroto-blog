@@ -1,3 +1,4 @@
+import Footer from "@/ui/components/footer";
 import Header from "@/ui/components/header";
 
 export default function BlogListLayout({
@@ -7,10 +8,11 @@ export default function BlogListLayout({
 }>) {
   return (
     <>
-    <Header />
-    <div className="w-[80%] max-w-[1000px] mx-auto mt-10">
-      {children}
-    </div>
+      <Header />
+      <div className="w-[80%] max-w-[1000px] mx-auto mt-10 mb-16">
+        {children}
+      </div>
+      <Footer />
     </>
   );
 }
