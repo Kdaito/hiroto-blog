@@ -13,14 +13,14 @@ const List: React.FC<Props> = ({ pageTitle, resultCounts }) => {
         <p className="text-lg opacity-50">{resultCounts}</p>
       </div>
       <div className="pt-4 grid grid-cols-1 gap-2">
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
+        <Card minHeight={240} />
+        <Card minHeight={240} />
+        <Card minHeight={240} />
+        <Card minHeight={240} />
+        <Card minHeight={240} />
+        <Card minHeight={240} />
+        <Card minHeight={240} />
+        <Card minHeight={240} />
       </div>
     </div>
   );
