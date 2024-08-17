@@ -1,6 +1,6 @@
 import List from "@/ui/components/list";
 import PageNation from "@/ui/components/pagination";
-import SideCategory from "@/ui/components/side-category";
+import SideContent from "@/ui/components/side-content";
 
 type Props = {
   pageTitle: string;
@@ -33,7 +33,7 @@ const PostCategoryAllPresenter: React.FC<Props> = ({
         </div>
       </div>
       <div className="sticky top-0 w-[280px] h-[200px] pt-16">
-        <SideCategory />
+        <SideContent />
       </div>
     </div>
   );
