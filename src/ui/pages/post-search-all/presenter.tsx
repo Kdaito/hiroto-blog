@@ -29,6 +29,7 @@ const PostCategoryAllPresenter: React.FC<Props> = ({
             current={currentPage}
             pageSize={maxItems}
             basePath={basePAth}
+            isUseQueryParam
           />
         </div>
       </div>
