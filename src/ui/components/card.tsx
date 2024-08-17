@@ -1,4 +1,4 @@
-import Chip from "./chip";
+import CategoryChip from "@/ui/components/category-chip";
 
 const Card: React.FC = () => {
   return (
@@ -8,7 +8,7 @@ const Card: React.FC = () => {
       </h3>
       <p className="text-sm opacity-70 my-2">投稿日: 20xx xx xx</p>
       <div className="flex gap-2 flex-wrap overflow-hidden">
-        <Chip label="CSS" />
+        <CategoryChip category={{id: "1", label: "CSS"}} />
       </div>
       <p className="mt-3">
         position:

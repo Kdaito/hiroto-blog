@@ -1,4 +1,5 @@
-import Chip from "./chip";
+import CategoryChip from "@/ui/components/category-chip";
+import { mockCategories } from "@/mock/category";
 
 const SideCategory: React.FC = () => {
   return (
@@ -19,13 +20,9 @@ const SideCategory: React.FC = () => {
       </div>
       <h3 className="text-sm font-bold border-b pb-1 mb-3">Categories</h3>
       <div className="flex flex-wrap gap-2">
-        <Chip label="css" />
-        <Chip label="go" />
-        <Chip label="linux" />
-        <Chip label="sql" />
-        <Chip label="typescript" />
-        <Chip label="Java" />
-        <Chip label="Spring boot" />
+        {mockCategories.map((category) => (
+          <CategoryChip key={category.id} category={category} />
+        ))}
       </div>
     </div>
   );
