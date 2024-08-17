@@ -1,4 +1,4 @@
-import PostCategoryAllPresenter from "@/ui/pages/post-category-all/presenter";
+import PostSearchAllPresenter from "@/ui/pages/post-search-all/presenter";
 import { searchParamSchema } from "@/validation/schema";
 import { SearchParamSchema } from "@/validation/schema/types";
 
@@ -35,7 +35,7 @@ export default function PostSearchAllContainer({
   const totalItems = 100;
 
   return (
-    <PostCategoryAllPresenter
+    <PostSearchAllPresenter
       pageTitle={pageTitle}
       resultCounts={resultCounts}
       totalItems={totalItems}
