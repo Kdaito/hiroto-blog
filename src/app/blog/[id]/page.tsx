@@ -1,7 +1,5 @@
-import List from "@/ui/pages/list";
+import PostAllContainer from "@/ui/pages/post-all/container";
 
 export default function Page({ params }: { params: { id: string } }) {
-  return (
-    <List params={params} />
-  );
+  return <PostAllContainer params={params} />;
 }
