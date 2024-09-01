@@ -30,7 +30,7 @@ const pageSchema = z
  */
 export const searchParamSchema = z
   .object({
-    q: z.string(),
+    q: z.string().min(1),
     page: pageSchema.optional(),
   })
   .strict()
