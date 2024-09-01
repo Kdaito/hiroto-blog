@@ -1,8 +1,8 @@
 import { postDetail } from "@/mock/post-detail";
-import RichTextRenderer from "../components/rich-text-renderer";
-import ClientBackButton from "../components/client-back-button";
+import RichTextRenderer from "../../components/rich-text-renderer";
+import ClientBackButton from "../../components/client-back-button";
 
-const Detail: React.FC = () => {
+const PostDetailPresenter: React.FC = () => {
   return (
     <div>
       <RichTextRenderer content={postDetail} />
@@ -13,4 +13,4 @@ const Detail: React.FC = () => {
   );
 };
 
-export default Detail;
+export default PostDetailPresenter;
