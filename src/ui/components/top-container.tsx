@@ -25,7 +25,7 @@ export default function TopContainer({
 
   return (
     <div>
-      <div className="relative z-1 w-full h-[100vh] overflow-hidden">
+      <div className="relative z-1 w-full h-[100vh] max-h-[1200px] overflow-hidden">
         <img
           ref={imageRef}
           src="/top.webp"
