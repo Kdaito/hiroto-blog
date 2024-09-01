@@ -1,19 +1,21 @@
-"use client"
+"use client";
 
+import { Blog } from "@/type/blog";
 import CategoryChip from "@/ui/components/category-chip";
 import { useRouter } from "next/navigation";
 
 type Props = {
+  blog: Blog;
   height?: number;
   minHeight?: number;
 };
 
-const Card: React.FC<Props> = ({ height, minHeight }) => {
+const Card: React.FC<Props> = ({ blog, height, minHeight }) => {
   const router = useRouter();
 
   const onClick = () => {
-    router.push("/blog/item/1");
-  }
+    router.push(`/blog/item/${blog.id}`);
+  };
 
   return (
     <button
@@ -21,17 +23,14 @@ const Card: React.FC<Props> = ({ height, minHeight }) => {
       style={{ height, minHeight }}
       onClick={onClick}
     >
-      <h3 className="font-bold text-xl mb-2">
-        【CSS】position: absoluteの中央寄せ方法まとめ
-      </h3>
-      <p className="text-sm opacity-70 my-2">投稿日: 20xx xx xx</p>
+      <h3 className="font-bold text-xl mb-2">{blog.title}</h3>
+      <p className="text-sm opacity-70 my-2">公開日: {blog.publishedAt}</p>
       <div className="flex gap-2 flex-wrap overflow-hidden">
-        <CategoryChip category={{ id: "1", label: "CSS" }} />
+        {blog.categories.map((category) => (
+          <CategoryChip key={category.id} category={category} />
+        ))}
       </div>
-      <p className="mt-3">
-        position:
-        absoluteを適用した要素を、上下左右それぞれの中央寄せにする方法をまとめました。
-      </p>
+      <p className="mt-3">{blog.summary}</p>
     </button>
   );
 };
