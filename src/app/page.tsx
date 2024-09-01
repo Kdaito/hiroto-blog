@@ -1,7 +1,7 @@
-import Top from "@/ui/pages/top";
+import TopContainer from "@/ui/pages/top/container";
 
 export default function Home() {
   return (
-    <Top />
+    <TopContainer />
   );
 }
