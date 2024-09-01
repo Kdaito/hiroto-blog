@@ -1,20 +1,21 @@
+import { BlogList } from "@/type/blog";
 import List from "@/ui/components/list";
 import PageNation from "@/ui/components/pagination";
 import SideContent from "@/ui/components/side-content";
 
 type Props = {
+  blogList: BlogList;
   pageTitle: string;
   resultCounts: string;
-  totalItems: number;
   currentPage: number;
   maxItems: number;
   basePAth: string;
 };
 
 const PostCategoryAllPresenter: React.FC<Props> = ({
+  blogList,
   pageTitle,
   resultCounts,
-  totalItems,
   currentPage,
   maxItems,
   basePAth,
@@ -22,10 +23,14 @@ const PostCategoryAllPresenter: React.FC<Props> = ({
   return (
     <div className="flex gap-5 relative">
       <div>
-        <List pageTitle={pageTitle} resultCounts={resultCounts} />
+        <List
+          blogs={blogList.blogs}
+          pageTitle={pageTitle}
+          resultCounts={resultCounts}
+        />
         <div className="flex justify-center py-8">
           <PageNation
-            total={totalItems}
+            total={blogList.totalCount}
             current={currentPage}
             pageSize={maxItems}
             basePath={basePAth}
