@@ -1,14 +1,21 @@
 import type { MicroCMSListResponse } from "microcms-js-sdk";
 
 import { getList } from "@/api/cms/client";
+import { dateConverter } from "@/api/cms/util";
 import type { CategoryResponse } from "@/api/cms/category/types";
 import type { BlogResponse, GetBlogListRequest } from "@/api/cms/blog/types";
 import type { Blog, BlogList } from "@/type/blog";
 import type { CategoryList } from "@/type/category";
-import { dateConverter } from "../util";
 
 const endpoint = "blogs";
 
+/**
+ * 公開日順にブログ一覧を取得する
+ * @param offset 取得開始位置
+ * @param limit 取得件数
+ *
+ * @returns ブログ一覧
+ */
 export const getBlogList = async ({
   offset,
   limit,
@@ -17,6 +24,56 @@ export const getBlogList = async ({
   const blogs = await getList<BlogResponse>(endpoint, {
     offset: offset,
     limit: limit,
+    orders: "-publishedAt",
+  });
+
+  // CMSからのレスポンスをUI用に変換
+  return convertResposeToBlogList(blogs);
+};
+
+/**
+ * カテゴリを指定してブログ一覧を公開日順に取得する
+ * @param offset 取得開始位置
+ * @param limit 取得件数
+ * @param categoryId カテゴリID
+ *
+ * @returns  カテゴリに紐づくブログ一覧
+ */
+export const getBlogListByCategory = async ({
+  offset,
+  limit,
+  categoryId,
+}: GetBlogListRequest & { categoryId: string }): Promise<BlogList> => {
+  // CMSからブログ一覧を取得
+  const blogs = await getList<BlogResponse>(endpoint, {
+    offset: offset,
+    limit: limit,
+    filters: `categories[contains]${categoryId}`,
+    orders: "-publishedAt",
+  });
+
+  // CMSからのレスポンスをUI用に変換
+  return convertResposeToBlogList(blogs);
+};
+
+/**
+ * キーワードを指定してブログ一覧を公開日順に取得する
+ * @param offset 取得開始位置
+ * @param limit 取得件数
+ * @param keyword キーワード
+ *
+ * @returns キーワードに紐づくブログ一覧
+ */
+export const getBlogListBySearch = async ({
+  offset,
+  limit,
+  keyword,
+}: GetBlogListRequest & { keyword: string }): Promise<BlogList> => {
+  // CMSからブログ一覧を取得
+  const blogs = await getList<BlogResponse>(endpoint, {
+    offset: offset,
+    limit: limit,
+    q: keyword,
     orders: "-publishedAt",
   });
 
