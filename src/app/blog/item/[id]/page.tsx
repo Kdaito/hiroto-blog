@@ -1,5 +1,5 @@
-import Detail from "@/ui/pages/detail";
+import PostDetailContainer from "@/ui/pages/detail/container";
 
-export default function Page() {
-  return <Detail />;
+export default function Page({ params }: { params: { id: string } }) {
+  return <PostDetailContainer params={params} />;
 }
