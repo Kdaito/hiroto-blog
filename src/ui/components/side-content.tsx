@@ -1,6 +1,7 @@
-import CategoryChip from "@/ui/components/category-chip";
-import { mockCategories } from "@/mock/category";
-import SearchBox from "./search-box";
+import { Suspense } from "react";
+import SearchBox from "@/ui/components/search-box";
+import CategoryList from "@/ui/components/category-list";
+import CategoryChipSuspense from "./category-list-suspense";
 
 const SideContent: React.FC = () => {
   return (
@@ -9,11 +10,9 @@ const SideContent: React.FC = () => {
         <SearchBox />
       </div>
       <h3 className="text-sm font-bold border-b pb-1 mb-3">Categories</h3>
-      <div className="flex flex-wrap gap-2">
-        {mockCategories.map((category) => (
-          <CategoryChip key={category.id} category={category} />
-        ))}
-      </div>
+      <Suspense fallback={<CategoryChipSuspense />}>
+        <CategoryList />
+      </Suspense>
     </div>
   );
 };

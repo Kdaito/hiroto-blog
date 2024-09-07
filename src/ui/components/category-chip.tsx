@@ -1,3 +1,4 @@
+import { Category } from "@/type/category";
 import Link from "next/link";
 
 type Props = {
