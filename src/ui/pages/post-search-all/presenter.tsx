@@ -22,7 +22,7 @@ const PostCategoryAllPresenter: React.FC<Props> = ({
 }) => {
   return (
     <div className="flex gap-5 relative">
-      <div>
+      <div className="w-full">
         <List
           blogs={blogList.blogs}
           pageTitle={pageTitle}
@@ -38,7 +38,7 @@ const PostCategoryAllPresenter: React.FC<Props> = ({
           />
         </div>
       </div>
-      <div className="sticky top-0 w-[280px] h-[200px] pt-16">
+      <div className="sticky shrink-0 top-0 w-[280px] h-[200px] pt-16">
         <SideContent />
       </div>
     </div>

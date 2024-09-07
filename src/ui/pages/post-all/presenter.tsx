@@ -21,7 +21,7 @@ const PostAllPresenter: React.FC<Props> = ({
   basePAth,
 }) => (
   <div className="flex gap-5 relative">
-    <div>
+    <div className="w-full">
       <List
         pageTitle={pageTitle}
         blogs={blogList.blogs}
@@ -36,7 +36,7 @@ const PostAllPresenter: React.FC<Props> = ({
         />
       </div>
     </div>
-    <div className="sticky top-0 w-[280px] h-[200px] pt-16">
+    <div className="sticky shrink-0 top-0 w-[280] h-[200px] pt-16">
       <SideContent />
     </div>
   </div>
