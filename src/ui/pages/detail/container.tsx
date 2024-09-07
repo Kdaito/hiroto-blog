@@ -1,11 +1,14 @@
+import { getBlog } from "@/api/cms/blog";
 import PostDetailPresenter from "./presenter";
 
-export default function PostDetailContainer({
+export default async function PostDetailContainer({
   params,
 }: {
   params: { id: string };
 }) {
-  const postId = params.id;
-  
-  return <PostDetailPresenter />;
-} 
+  const blogId = params.id;
+
+  const blog = await getBlog(blogId);
+
+  return <PostDetailPresenter blog={blog} />;
+}

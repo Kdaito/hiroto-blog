@@ -25,13 +25,10 @@ const RichTextRenderer: React.FC<Props> = async ({ content }) => {
     .process(content);
 
   return (
-    <div className="bg-white rounded px-8 py-12">
-      <h2 className="text-4xl font-bold pb-10">Title</h2>
-      <article
+    <article
         className="prose max-w-none"
         dangerouslySetInnerHTML={{ __html: result.toString() }}
       />
-    </div>
   );
 };
 

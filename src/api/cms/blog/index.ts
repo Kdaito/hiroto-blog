@@ -1,6 +1,6 @@
 import type { MicroCMSListResponse } from "microcms-js-sdk";
 
-import { getList } from "@/api/cms/client";
+import { getDetail, getList } from "@/api/cms/client";
 import { dateConverter } from "@/api/cms/util";
 import type { CategoryResponse } from "@/api/cms/category/types";
 import type { BlogResponse, GetBlogListRequest } from "@/api/cms/blog/types";
@@ -8,6 +8,18 @@ import type { Blog, BlogList } from "@/type/blog";
 import type { CategoryList } from "@/type/category";
 
 const endpoint = "blogs";
+
+/**
+ * ブログの詳細を取得する
+ * 
+ * @param blogId ブログID
+ * @returns ブログ詳細
+ */
+export const getBlog = async (blogId: string): Promise<Blog> => {
+  const blog = await getDetail<BlogResponse>(endpoint, blogId);
+
+  return convertResposeToBlog(blog);
+}
 
 /**
  * 公開日順にブログ一覧を取得する
@@ -82,6 +94,23 @@ export const getBlogListBySearch = async ({
 };
 
 /**
+ * CMSから受け取ったブログレスポンス `BlogResponse` をUI用の`Blog`に変換する
+ * 
+ * @param response CMSから受け取ったレスポンス `BlogResponse`
+ * @returns `Blog`
+ */
+const convertResposeToBlog = (response: BlogResponse): Blog => ({
+  id: response.id,
+  title: response.title,
+  author: response.author,
+  summary: response.summary,
+  body: response.body,
+  categories: convertCategoryResponseListToCategoryList(response.categories),
+  publishedAt: dateConverter(response.publishedAt),
+  updatedAt: dateConverter(response.updatedAt)
+});
+
+/**
  * CMSから受け取ったブログ一覧レスポンスをUI用の`BlogList`に変換する
  *
  * @param response CMSから受け取ったレスポンス `MicroCMSListResponse<BlogResponse>`
@@ -90,16 +119,7 @@ export const getBlogListBySearch = async ({
 const convertResposeToBlogList = (
   response: MicroCMSListResponse<BlogResponse>
 ): BlogList => {
-  const blogs: Blog[] = response.contents.map((content) => ({
-    id: content.id,
-    title: content.title,
-    author: content.author,
-    summary: content.summary,
-    body: content.body,
-    categories: convertCategoryResponseListToCategoryList(content.categories),
-    publishedAt: dateConverter(content.publishedAt),
-    updatedAt: dateConverter(content.updatedAt),
-  }));
+  const blogs: Blog[] = response.contents.map((content) => convertResposeToBlog(content));
 
   return {
     blogs,
