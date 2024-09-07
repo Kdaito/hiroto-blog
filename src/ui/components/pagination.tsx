@@ -18,7 +18,7 @@ const PageNation: React.FC<Props> = ({
   const totalPage = Math.ceil(total / pageSize);
 
   const isPreviousDisabled = current === 1;
-  const isNextDisabled = current === totalPage;
+  const isNextDisabled = current === totalPage || totalPage === 0;
 
   const previousHref = isUseQueryParam
     ? `${basePath}&page=${current - 1}`
@@ -40,7 +40,7 @@ const PageNation: React.FC<Props> = ({
         {"<"}
       </Link>
       <p className="h-full border-x py-2 px-4">
-        {current} of {totalPage}
+        {current} of {totalPage === 0 ? 1 : totalPage}
       </p>
       <Link
         href={nextHref}
