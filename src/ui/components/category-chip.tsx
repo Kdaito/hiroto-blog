@@ -1,3 +1,5 @@
+"use client";
+
 import { Category } from "@/type/category";
 import Link from "next/link";
 
@@ -10,6 +12,7 @@ const CategoryChip: React.FC<Props> = ({ category: { id, label } }) => {
     <Link
       href={`/blog/category/${id}/1`}
       className="text-white bg-gray-300 rounded text-sm px-3 hover:bg-gray-400 duration-200"
+      onClick={(e) => e.stopPropagation()}
     >
       {label}
     </Link>
